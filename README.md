@@ -22,6 +22,10 @@ The rate limiting algorithm is implemented from scratch using .NET collections a
 - xUnit for automated testing
 - `TimeProvider` and `FakeTimeProvider` for deterministic window-expiration tests
 
+## Release v1.0.0
+
+The first release "Rate Limiter gRPC Service v1.0.0" is available to download in the git repo Releases. ZIP should be downloaded and unpacked, where the executable file will be ready to run.
+
 ## Build and run
 
 ### Prerequisites
@@ -78,7 +82,7 @@ For each `CheckRateLimit` call:
 
 ### Concurrency design
 
-`ConcurrentDictionary` provides safe concurrent access to the configuration and state maps. A lock on each `WindowState` protects the *check–reset–increment* sequence as a single critical section. Requests for different client/resource pairs can proceed independently; requests targeting the same pair are serialized briefly. Resource configurations are immutable records that are replaced through `ConcurrentDictionary.AddOrUpdate`.
+`ConcurrentDictionary` provides safe concurrent access to the configuration and state maps. A lock on each `WindowState` protects the *checkï¿½resetï¿½increment* sequence as a single critical section. Requests for different client/resource pairs can proceed independently; requests targeting the same pair are serialized briefly. Resource configurations are immutable records that are replaced through `ConcurrentDictionary.AddOrUpdate`.
 
 ## Assumptions and decisions
 
